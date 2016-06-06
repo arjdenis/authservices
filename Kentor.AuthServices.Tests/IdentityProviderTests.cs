@@ -18,6 +18,7 @@ using System.Security.Cryptography.Xml;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Claims;
 using System.Security.Principal;
+using System.Globalization;
 
 namespace Kentor.AuthServices.Tests
 {
@@ -33,6 +34,11 @@ namespace Kentor.AuthServices.Tests
         public void Initialize()
         {
             currentPrincipal = Thread.CurrentPrincipal;
+
+            var currentThread = Thread.CurrentThread;
+
+            currentThread.CurrentCulture = CultureInfo.InvariantCulture;
+            currentThread.CurrentUICulture = CultureInfo.InvariantCulture;
         }
 
         [TestCleanup]
